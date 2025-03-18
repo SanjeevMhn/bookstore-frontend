@@ -84,8 +84,8 @@ const Footer = () => {
   ];
   return (
     <footer className="main-footer">
-      <div className="wrapper pt-[4rem] flex gap-[5rem]">
-        <div className="brand-details flex flex-col gap-[2rem] min-w-[40rem]">
+      <div className="wrapper py-[2rem] flex gap-[5rem]">
+        <div className="brand-details flex flex-col gap-[2rem] min-w-[30rem]">
           <h2 className="text-[3.2rem] font-semibold">bookstore</h2>
           <p className="text-[1.8rem]">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rem
