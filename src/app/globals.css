@@ -18,7 +18,22 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-} */
+}*/
+
+.header-text{
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+
+.secondary-text{
+  font-size: 1.7rem;
+  color: #4d4d4d;
+}
+
+.header-link{
+  font-size: 1.8rem;
+  color: #4d4d4d;
+}
 
 body {
   background: var(--background);
@@ -31,6 +46,17 @@ body {
 .wrapper {
   width: min(90%, 115rem);
   margin: 0 auto;
+}
+
+.img-container{
+  --size: 21.4rem;
+  width: var(--size);
+  aspect-ratio: 1 / 1.15;
+  img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
 }
 
 .icon-container {
@@ -164,7 +190,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
-    border-radius: 1.2rem;
+    border-radius: 0.8rem;
     min-width: 37rem;
     min-height: 25rem;
     font-weight: 500;
@@ -182,5 +208,11 @@ body {
     &.card-4 {
       background: var(--gradient_four);
     }
+  }
+}
+
+.book-list-section{
+  &:nth-child(even){
+    background-color: #dbeafe;
   }
 }
