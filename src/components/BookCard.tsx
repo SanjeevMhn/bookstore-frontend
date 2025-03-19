@@ -8,6 +8,9 @@ const BookCard = ({ book }: BookCardPropType) => {
   const placeholderImg = "/placeholder.svg";
   return (
     <div className="inner-container h-full flex flex-col gap-[0.8rem] bg-white">
+      {book.inStock !== undefined && !book.inStock ? (
+        <div className="out-of-stock">Out of Stock</div>
+      ) : null}
       <div className="img-container mx-auto">
         {book.image !== "" ? (
           <img src={book.image} />
@@ -24,7 +27,11 @@ const BookCard = ({ book }: BookCardPropType) => {
         type="button"
         className="add-to-cart p-[0.5rem] border border-blue-400 text-blue-400 cursor-pointer mt-auto hover:text-white hover:bg-blue-400"
       >
-        Add to Cart
+        {book.inStock !== undefined && !book.inStock ? (
+          <>Request Book</>
+        ) : (
+          <>Add to Cart</>
+        )}
       </button>
     </div>
   );

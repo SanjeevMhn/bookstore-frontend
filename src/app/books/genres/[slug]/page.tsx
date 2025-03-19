@@ -80,6 +80,7 @@ export default async function Page({
       author: "Amanda Nunez",
       image: "",
       price: "860",
+      inStock: false,
     },
   ];
   return (
@@ -114,7 +115,16 @@ export default async function Page({
           </header>
           <ul className="book-list small">
             {bookList.map((item) => (
-              <li className="item" key={item.id}>
+              <li
+                className={`item ${
+                  item.inStock !== undefined
+                    ? !item.inStock
+                      ? "inverse"
+                      : ""
+                    : ""
+                }`}
+                key={item.id}
+              >
                 <BookCard book={item} />
               </li>
             ))}

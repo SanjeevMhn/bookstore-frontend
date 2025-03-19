@@ -6,6 +6,7 @@ export type BookCardType = {
   author: string;
   image: string;
   price: string;
+  inStock?: boolean;
 };
 
 type BookListProps = {
@@ -30,7 +31,7 @@ const BookList = ({ title, sub_title, bookList, link }: BookListProps) => {
         </header>
         <ul className="book-list pt-8 flex">
           {bookList.map((item) => (
-            <li className="item" key={item.id}>
+            <li className={`item ${item.inStock !== undefined ? !item.inStock ? 'inverse' : '' : ''}`} key={item.id}>
               <BookCard book={item} />
             </li>
           ))}

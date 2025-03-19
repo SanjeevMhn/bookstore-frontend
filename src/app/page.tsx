@@ -1,8 +1,8 @@
-import BookList, { BookCard } from "@/components/BookList";
+import BookList, { BookCardType } from "@/components/BookList";
 import Hero from "@/components/Hero";
 
 export default function Home() {
-  const newArrivalBookList: Array<BookCard> = [
+  const newArrivalBookList: Array<BookCardType> = [
     {
       id: 1,
       name: "The Three Body Problem",
@@ -37,9 +37,10 @@ export default function Home() {
       author: "John Doe",
       image: "",
       price: "560",
+      inStock: false
     },
   ];
-  const bestSellersBookList: Array<BookCard> = [
+  const bestSellersBookList: Array<BookCardType> = [
     {
       id: 1,
       name: "Rich Dad, Poor Dad",
@@ -60,6 +61,7 @@ export default function Home() {
       author: "Karan Bhatiya",
       image: "",
       price: "350",
+      inStock: false
     },
     {
       id: 4,
