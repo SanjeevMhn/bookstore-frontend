@@ -1,12 +1,13 @@
+import Link from "next/link";
 import Categories from "./Categories";
 
 const Navbar = () => {
   return (
     <nav className="main-nav">
       <div className="wrapper flex items-center gap-[10rem] category-dropdown">
-        <a href="/" className="brand-name text-5xl font-bold">
+        <Link href="/" className="brand-name text-5xl font-bold">
           bookstore
-        </a>
+        </Link>
         <div className="menu-container w-full">
           <div className="label rotate-icon flex items-center gap-2">
             <span className="label-text">Books</span>

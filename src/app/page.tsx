@@ -1,8 +1,5 @@
 import BookList, { BookCard } from "@/components/BookList";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
-import Image from "next/image";
 
 export default function Home() {
   const newArrivalBookList: Array<BookCard> = [
@@ -80,8 +77,7 @@ export default function Home() {
     },
   ];
   return (
-    <main className="flex flex-col h-full isolate">
-      <Navbar />
+      <>
       <Hero />
       <BookList
         title="Best Sellers"
@@ -95,7 +91,6 @@ export default function Home() {
         link="/new-arrivals"
         bookList={newArrivalBookList}
       />
-      <Footer />
-    </main>
+    </>
   );
 }
