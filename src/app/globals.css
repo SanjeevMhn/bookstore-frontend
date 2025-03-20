@@ -258,17 +258,17 @@ body {
     cursor: pointer;
     padding: 1.2rem;
     border-radius: 0.8rem;
-    &:hover, 
+    &:hover,
     &.inverse {
       background-color: #fff;
       box-shadow: 0 0 8px 5px #cbcbcbcb;
     }
-    &:has(.inner-container .out-of-stock){
+    &:has(.inner-container .out-of-stock) {
       overflow: hidden;
     }
-    .inner-container{
+    .inner-container {
       position: relative;
-      .out-of-stock{
+      .out-of-stock {
         position: absolute;
         width: 100%;
         background-color: rgb(111, 13, 13);
@@ -310,15 +310,15 @@ body {
   }
 }
 
-.breadcrumbs{
+.breadcrumbs {
   display: flex;
   gap: 2.5rem;
   font-size: 1.8rem;
-  .breadcrumb-item{
-    &:not(:first-child){
+  .breadcrumb-item {
+    &:not(:first-child) {
       position: relative;
-      &::before{
-        content: '/';
+      &::before {
+        content: "/";
         position: absolute;
         left: -1.45rem;
         font-size: 3rem;
@@ -329,29 +329,45 @@ body {
   }
 }
 
-.book-detail-container{
+.book-detail-container {
   display: flex;
   gap: 2rem;
-  .book-cover{
-    --size: 55rem;
+  padding: 2rem;
+  border: 1px solid #a3a3a3;
+  border-radius: 0.8rem;
+  position: relative;
+  .out-of-stock {
+    position: absolute;
+    width: 20%;
+    background-color: rgb(111, 13, 13);
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    top: 0;
+    left: 0;
+    transform: rotate(-45deg) translate(-7.5rem, -3rem);
   }
-  .book-detail{
+  &:has(.out-of-stock) {
+    overflow: hidden;
+  }
+  .book-detail {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
-  .book-title{
+  .book-title {
     font-size: 3.2rem;
     font-weight: 500;
   }
-  .book-author{
+  .book-author {
     font-size: 2rem;
   }
-  
-  .book-description{
+
+  .book-description {
     font-size: 1.75rem;
   }
-  .book-add-info{
+  .book-add-info {
     padding: 1.2rem;
     border: 1px solid #a3a3a3;
     border-radius: 0.5rem;
@@ -360,12 +376,12 @@ body {
     flex-direction: column;
     gap: 1.2rem;
   }
-  .title-text{
+  .title-text {
     font-size: 2.4rem;
     font-weight: bold;
   }
-  .book-quantity{
-    button{
+  .book-quantity {
+    button {
       --size: 3.5rem;
       height: var(--size);
       width: var(--size);
@@ -375,5 +391,4 @@ body {
       cursor: pointer;
     }
   }
-  
 }
