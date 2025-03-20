@@ -1,6 +1,8 @@
 import BookCard from "@/components/BookCard";
+import BookCardList from "@/components/BookCardList";
 import { BookCardType } from "@/components/BookList";
 import Categories from "@/components/Categories";
+import Link from "next/link";
 
 export default async function Page({
   params,
@@ -48,7 +50,7 @@ export default async function Page({
     },
     {
       id: 6,
-      name: "Rich Dad, Poor Dad",
+      name: "Rich Dad Poor Dad",
       author: "John Doe",
       image: "",
       price: "450",
@@ -113,22 +115,7 @@ export default async function Page({
               </span>
             </form>
           </header>
-          <ul className="book-list small">
-            {bookList.map((item) => (
-              <li
-                className={`item ${
-                  item.inStock !== undefined
-                    ? !item.inStock
-                      ? "inverse"
-                      : ""
-                    : ""
-                }`}
-                key={item.id}
-              >
-                <BookCard book={item} />
-              </li>
-            ))}
-          </ul>
+          <BookCardList bookList={bookList} />
         </main>
       </div>
     </div>

@@ -43,7 +43,7 @@ export default function Home() {
   const bestSellersBookList: Array<BookCardType> = [
     {
       id: 1,
-      name: "Rich Dad, Poor Dad",
+      name: "Rich Dad Poor Dad",
       author: "John Doe",
       image: "",
       price: "450",

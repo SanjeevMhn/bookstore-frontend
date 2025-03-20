@@ -1,4 +1,5 @@
 import BookCard from "./BookCard";
+import BookCardList from "./BookCardList";
 
 export type BookCardType = {
   id: number;
@@ -20,7 +21,7 @@ const BookList = ({ title, sub_title, bookList, link }: BookListProps) => {
   return (
     <section className="book-list-section">
       <div className="wrapper p-[5rem_0]">
-        <header className="flex justify-between items-center">
+        <header className="flex justify-between items-center pb-[2rem]">
           <div className="title-section">
             <h2 className="header-text">{title}</h2>
             {sub_title && <p className="secondary-text">{sub_title}</p>}
@@ -29,13 +30,7 @@ const BookList = ({ title, sub_title, bookList, link }: BookListProps) => {
             Show All
           </a>
         </header>
-        <ul className="book-list pt-8 flex">
-          {bookList.map((item) => (
-            <li className={`item ${item.inStock !== undefined ? !item.inStock ? 'inverse' : '' : ''}`} key={item.id}>
-              <BookCard book={item} />
-            </li>
-          ))}
-        </ul>
+        <BookCardList bookList={bookList} />
       </div>
     </section>
   );
