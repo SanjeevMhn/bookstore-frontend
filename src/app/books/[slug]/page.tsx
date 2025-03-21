@@ -55,13 +55,15 @@ export default async function Page({
   };
 
   return (
+    <>
     <div className="wrapper p-[3rem_0]">
-      <ul className="breadcrumbs pb-[2rem]">
+      <ul className="breadcrumbs">
         <li className="breadcrumb-item">Home</li>
         <li className="breadcrumb-item">Action and Adventure</li>
         <li className="breadcrumb-item">{slug}</li>
       </ul>
-      <BookDetail bookDetail={bookDetail} />
     </div>
+      <BookDetail bookDetail={bookDetail} />
+    </>
   );
 }

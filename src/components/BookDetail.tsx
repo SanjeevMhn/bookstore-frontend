@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { BookCardType } from "./BookList";
+import BookCardList from "./BookCardList";
 export type BookDetailType = {
   book_title: string;
   book_image: string;
@@ -18,6 +20,36 @@ export type BookDetailType = {
 
 type BookDetailPropType = {
   bookDetail: BookDetailType;
+};
+
+const BookQuantityDisplay = () => {
+  const [bookQuantity, setBookQuantity] = useState<number>(0);
+  return (
+    <div className="book-quantity inline-flex items-center gap-[1.5rem]">
+      <button
+        type="button"
+        onClick={() =>
+          bookQuantity <= 0
+            ? setBookQuantity(0)
+            : setBookQuantity(bookQuantity - 1)
+        }
+      >
+        <span className="icon-container" style={{ "--size": "2.5rem" }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
+          </svg>
+        </span>
+      </button>
+      <span className="quantity text-[2.2rem]">Qty: {bookQuantity}</span>
+      <button type="button" onClick={() => setBookQuantity(bookQuantity + 1)}>
+        <span className="icon-container" style={{ "--size": "2.5rem" }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
+          </svg>
+        </span>
+      </button>
+    </div>
+  );
 };
 
 const BookDetail = ({ bookDetail }: BookDetailPropType) => {
@@ -64,124 +96,211 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
     return setBookOtherInfo(bookDetail);
   }, [bookDetail]);
 
-  const [bookQuantity, setBookQuantity] = useState<number>(0);
+  const booksFromAuthor: Array<BookCardType> = [
+    {
+      id: 1,
+      name: "The Three Body Problem",
+      author: "Cixin Leu",
+      image: "",
+      price: "958",
+    },
+    {
+      id: 2,
+      name: "The Dark Forest",
+      author: "Cixin Leu",
+      image: "",
+      price: "958",
+    },
+    {
+      id: 3,
+      name: "Death's End",
+      author: "Cixin Leu",
+      image: "",
+      price: "958",
+    },
+    {
+      id: 4,
+      name: "Animal Farm",
+      author: "George Otwell",
+      image: "",
+      price: "1200",
+    },
+    {
+      id: 5,
+      name: "Fight Club",
+      author: "John Doe",
+      image: "",
+      price: "560",
+      inStock: false,
+    },
+  ];
+
+  const booksFromSameCategory: Array<BookCardType> = [
+    {
+      id: 1,
+      name: "The Three Body Problem",
+      author: "Cixin Leu",
+      image: "",
+      price: "958",
+    },
+    {
+      id: 2,
+      name: "The Dark Forest",
+      author: "Cixin Leu",
+      image: "",
+      price: "958",
+    },
+    {
+      id: 3,
+      name: "Death's End",
+      author: "Cixin Leu",
+      image: "",
+      price: "958",
+    },
+    {
+      id: 4,
+      name: "Animal Farm",
+      author: "George Otwell",
+      image: "",
+      price: "1200",
+    },
+    {
+      id: 5,
+      name: "Fight Club",
+      author: "John Doe",
+      image: "",
+      price: "560",
+      inStock: false,
+    },
+  ];
 
   return (
-    <article className="book-detail-container">
-      {bookDetail.book_inStock !== undefined && !bookDetail.book_inStock ? (
-        <span className="out-of-stock">Out of stock</span>
-      ) : null}
-      <div className="book-cover flex flex-col gap-[1.5rem]">
-        <div className="img-container" style={{ "--size": "22rem" }}>
-          {bookDetail.book_image !== "" &&
-          bookDetail.book_image !== undefined ? (
-            <img src={bookDetail.book_image} alt="Book Cover Image" />
-          ) : (
-            <img src={placeholder} alt="Book Cover Image" />
-          )}
-        </div>
-        <ul className="book-genre-list flex flex-wrap gap-[0.6rem]">
-          <li className="item p-[0.2rem_0.5rem] text-[1.7rem] font-semibold">
-            Geners:
-          </li>
-          {bookDetail.book_genres.map((genre) => (
-            <li
-              className="item p-[0.2rem_0.5rem] rounded-xl bg-white border border-blue-400"
-              key={genre.id}
-            >
-              <Link
-                href={`/books/genres/${genre.route}`}
-                className="text-blue-400"
-              >
-                {genre.name}
-              </Link>
+    <section className="book-details flex flex-col gap-[2.5rem]">
+      <article className="book-detail-container wrapper">
+        {bookDetail.book_inStock !== undefined && !bookDetail.book_inStock ? (
+          <span className="out-of-stock">Out of stock</span>
+        ) : null}
+        <div className="book-cover flex flex-col gap-[1.5rem]">
+          <div className="img-container" style={{ "--size": "22rem" }}>
+            {bookDetail.book_image !== "" &&
+            bookDetail.book_image !== undefined ? (
+              <img src={bookDetail.book_image} alt="Book Cover Image" />
+            ) : (
+              <img src={placeholder} alt="Book Cover Image" />
+            )}
+          </div>
+          <ul className="book-genre-list flex flex-wrap gap-[0.6rem]">
+            <li className="item p-[0.2rem_0.5rem] text-[1.7rem] font-semibold">
+              Geners:
             </li>
-          ))}
-        </ul>
-      </div>
-      <div className="book-detail">
-        <h2 className="book-title">{bookDetail.book_title}</h2>
-        <p className="book-author">by {bookDetail.book_author}</p>
-        <div className="book-seller">
-          sold by &nbsp;
-          <Link href={"/"} className="text-[2rem] text-blue-500">
-            {bookDetail.book_seller}
-          </Link>
+            {bookDetail.book_genres.map((genre) => (
+              <li
+                className="item p-[0.2rem_0.5rem] rounded-xl bg-white border border-blue-400"
+                key={genre.id}
+              >
+                <Link
+                  href={`/books/genres/${genre.route}`}
+                  className="text-blue-400"
+                >
+                  {genre.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
+        <div className="book-detail">
+          <h2 className="book-title">{bookDetail.book_title}</h2>
+          <p className="book-author">by {bookDetail.book_author}</p>
+          <div className="book-seller">
+            sold by &nbsp;
+            <Link href={"/"} className="text-[2rem] text-blue-500">
+              {bookDetail.book_seller}
+            </Link>
+          </div>
 
-        <p className="book-description">{bookDetail.book_description}</p>
-        <p className="book-price text-[2.2rem]">Rs. 980</p>
-        <div className="book-quantity inline-flex items-center gap-[1.5rem]">
-          <button
-            type="button"
-            onClick={() =>
-              bookQuantity <= 0
-                ? setBookQuantity(0)
-                : setBookQuantity(bookQuantity - 1)
-            }
-          >
-            <span className="icon-container" style={{ "--size": "2.5rem" }}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
-              </svg>
-            </span>
-          </button>
-          <span className="quantity text-[2.2rem]">Qty: {bookQuantity}</span>
-          <button
-            type="button"
-            onClick={() => setBookQuantity(bookQuantity + 1)}
-          >
-            <span className="icon-container" style={{ "--size": "2.5rem" }}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
-              </svg>
-            </span>
-          </button>
+          <p className="book-description">{bookDetail.book_description}</p>
+          <p className="book-price text-[2.2rem]">Rs. 980</p>
+          <BookQuantityDisplay />
+          <div className="book-actions flex gap-[1.5rem]">
+            {bookDetail.book_inStock !== undefined &&
+            !bookDetail.book_inStock ? (
+              <>
+                <button
+                  type="button"
+                  className="cursor-pointer bg-red-900 text-white p-[0.5rem_1rem] text-[1.7rem]"
+                >
+                  Get Restock Alert
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="cursor-pointer border border-blue-400 bg-blue-400 text-white p-[0.5rem_1rem] text-[1.7rem]"
+                >
+                  Add to Cart
+                </button>
+                <button
+                  type="button"
+                  className="cursor-pointer border border-blue-400 bg-white text-blue-400 p-[0.5rem_1rem] text-[1.7rem]"
+                >
+                  Wishlist
+                </button>
+              </>
+            )}
+          </div>
         </div>
-        <div className="book-actions flex gap-[1.5rem]">
-          {bookDetail.book_inStock !== undefined && !bookDetail.book_inStock ? (
-            <>
-              <button
-                type="button"
-                className="cursor-pointer bg-red-900 text-white p-[0.5rem_1rem] text-[1.7rem]"
-              >
-                Get Restock Alert
-              </button>
-            </>
-          ) : (
-            <>
-              <button
-                type="button"
-                className="cursor-pointer border border-blue-400 bg-blue-400 text-white p-[0.5rem_1rem] text-[1.7rem]"
-              >
-                Add to Cart
-              </button>
-              <button
-                type="button"
-                className="cursor-pointer border border-blue-400 bg-white text-blue-400 p-[0.5rem_1rem] text-[1.7rem]"
-              >
-                Wishlist
-              </button>
-            </>
-          )}
+        <div className="book-add-info">
+          <h2 className="title-text">Book Info</h2>
+          <ul className="info-list flex flex-col gap-[1.2rem]">
+            {bookOtherInfoList.map((info, index) => (
+              <li className="info-item flex gap-5 items-center" key={index}>
+                <span
+                  className="icon-container"
+                  style={{ "--size": "2.2rem" }}
+                  dangerouslySetInnerHTML={{ __html: info.icon }}
+                ></span>
+                <span className="label-text text-[1.7rem]">{info.data}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
-      <div className="book-add-info">
-        <h2 className="title-text">Book Info</h2>
-        <ul className="info-list flex flex-col gap-[1.2rem]">
-          {bookOtherInfoList.map((info, index) => (
-            <li className="info-item flex gap-5 items-center" key={index}>
-              <span
-                className="icon-container"
-                style={{ "--size": "2.2rem" }}
-                dangerouslySetInnerHTML={{ __html: info.icon }}
-              ></span>
-              <span className="label-text text-[1.7rem]">{info.data}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </article>
+      </article>
+
+      <article className="books-from-author bg-blue-100 py-[3rem]">
+        <div className="wrapper">
+          <header className="title-section pb-5 grid grid-cols-4 gap-2">
+            <h2 className="header-text col-1 row-1">More by</h2>
+            <p className="secondary-text col-1 row-2">Cixin Leu</p>
+            <Link
+              href={"/books/genres/science-fiction"}
+              className="col-[1/-1] row-[1/span_2] flex items-center justify-end text-[1.8rem]"
+            >
+              View all
+            </Link>
+          </header>
+
+          <BookCardList bookList={booksFromAuthor} inverse={true} />
+        </div>
+      </article>
+
+      <article className="similar-books pb-[3rem]">
+        <div className="wrapper">
+          <header className="title-section pb-5 grid grid-cols-4 gap-2">
+            <h2 className="header-text col-1 row-1">See Similar Books</h2>
+            <p className="secondary-text pb-5 col-1 row-2">Science Fiction</p>
+            <Link
+              href={"/books/genres/science-fiction"}
+              className="col-[1/-1] row-[1/span_2] flex justify-end items-center text-[1.8rem]"
+            >
+              View all
+            </Link>
+          </header>
+
+          <BookCardList bookList={booksFromSameCategory} />
+        </div>
+      </article>
+    </section>
   );
 };
 

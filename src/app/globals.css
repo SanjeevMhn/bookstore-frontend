@@ -202,7 +202,6 @@ body {
   z-index: 1;
   background-color: #fff;
   box-shadow: 0 -2px 15px 0 #cdcdcd;
-  margin-top: auto;
 }
 
 .hero-section {
@@ -233,18 +232,6 @@ body {
     }
     &.card-4 {
       background: var(--gradient_four);
-    }
-  }
-}
-
-.book-list-section {
-  &:nth-child(even) {
-    background-color: #dbeafe;
-    .book-list {
-      .item {
-        background-color: #fff;
-        box-shadow: 0 0 8px 5px #cbcbcbcb;
-      }
     }
   }
 }

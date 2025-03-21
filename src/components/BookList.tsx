@@ -15,11 +15,12 @@ type BookListProps = {
   sub_title?: string;
   bookList: Array<BookCardType>;
   link: string;
+  inverse?: boolean
 };
 
-const BookList = ({ title, sub_title, bookList, link }: BookListProps) => {
+const BookList = ({ title, sub_title, bookList, link, inverse }: BookListProps) => {
   return (
-    <section className="book-list-section">
+    <section className={`book-list-section ${inverse !== undefined && inverse ? 'bg-blue-100' : ''}`}>
       <div className="wrapper p-[5rem_0]">
         <header className="flex justify-between items-center pb-[2rem]">
           <div className="title-section">
@@ -30,7 +31,7 @@ const BookList = ({ title, sub_title, bookList, link }: BookListProps) => {
             Show All
           </a>
         </header>
-        <BookCardList bookList={bookList} />
+        <BookCardList bookList={bookList} inverse={inverse !== undefined ? inverse : undefined} />
       </div>
     </section>
   );

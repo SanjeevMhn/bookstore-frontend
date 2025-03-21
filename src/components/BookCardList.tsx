@@ -4,15 +4,19 @@ import BookCard from "./BookCard";
 
 type BookCardListPropsType = {
   bookList: Array<BookCardType>;
+  inverse?: boolean;
 };
-const BookCardList = ({ bookList }: BookCardListPropsType) => {
+const BookCardList = ({ bookList, inverse }: BookCardListPropsType) => {
   return (
     <ul className="book-list">
       {bookList.map((item) => (
         <li
-          className={`item ${
-            item.inStock !== undefined ? (!item.inStock ? "inverse" : "") : ""
-          }`}
+          className={`item 
+            ${
+              item.inStock !== undefined ? (!item.inStock ? "inverse" : "") : ""
+            } 
+            ${inverse !== undefined && inverse ? "inverse" : ""}
+          `}
           key={item.id}
         >
           <Link href={`/books/${item.name}`}>
@@ -24,4 +28,4 @@ const BookCardList = ({ bookList }: BookCardListPropsType) => {
   );
 };
 
-export default BookCardList
+export default BookCardList;

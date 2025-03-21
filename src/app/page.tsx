@@ -92,6 +92,7 @@ export default function Home() {
         sub_title="Explore the latest arrivals and find your new read."
         link="/new-arrivals"
         bookList={newArrivalBookList}
+        inverse={true}
       />
     </>
   );
