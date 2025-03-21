@@ -52,6 +52,16 @@ const BookQuantityDisplay = () => {
   );
 };
 
+const BookDescription = ({description}:{description: string}) => {
+  const [showMore, setShowMore] = useState<boolean>(false)
+  return (
+    <>
+      <p className={`book-description ${showMore && "show-more"}`}>{description}</p>
+      <button type="button" className="mx-auto text-blue-400 text-[1.8rem] cursor-pointer" onClick={() => setShowMore(!showMore)}>Show {!showMore ? "More" : "Less"}</button>
+    </>
+  )
+}
+
 const BookDetail = ({ bookDetail }: BookDetailPropType) => {
   let placeholder = "/placeholder.svg";
 
@@ -217,8 +227,7 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
               {bookDetail.book_seller}
             </Link>
           </div>
-
-          <p className="book-description">{bookDetail.book_description}</p>
+          <BookDescription description={bookDetail.book_description} />
           <p className="book-price text-[2.2rem]">Rs. 980</p>
           <BookQuantityDisplay />
           <div className="book-actions flex gap-[1.5rem]">

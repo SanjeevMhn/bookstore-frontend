@@ -1,3 +1,4 @@
+'use client'
 import Link from "next/link";
 
 export type Category = {
@@ -9,9 +10,10 @@ export type Category = {
 
 type CategoriesProp = {
   activeCategory?: string;
+  handleHideDropdown?: () => void;
 };
 
-const Categories = ({ activeCategory }: CategoriesProp) => {
+const Categories = ({ activeCategory, handleHideDropdown }: CategoriesProp) => {
   const categories: Array<Category> = [
     {
       id: 1,
@@ -231,6 +233,7 @@ const Categories = ({ activeCategory }: CategoriesProp) => {
                       <li className="category-item" key={category.id + index}>
                         {sub.route !== undefined ? (
                           <Link
+                            onClick={handleHideDropdown}
                             href={`/books/genres/${sub.route}`}
                             className={`flex category-link ${
                               activeCategory == sub.route ? "active" : ""
@@ -243,6 +246,7 @@ const Categories = ({ activeCategory }: CategoriesProp) => {
                             <Link
                               href={`/books/genres/${sub.name}`}
                               className="flex category-link"
+                              onClick={handleHideDropdown}
                             >
                               {sub.name}
                             </Link>
@@ -259,6 +263,7 @@ const Categories = ({ activeCategory }: CategoriesProp) => {
             <li className="category-item" key={category.id + index}>
               {category.route !== undefined ? (
                 <Link
+                  onClick={handleHideDropdown}
                   href={`/books/genres/${category.route}`}
                   className={`flex category-link ${
                     activeCategory == category.route ? "active" : ""
@@ -269,6 +274,7 @@ const Categories = ({ activeCategory }: CategoriesProp) => {
               ) : (
                 <>
                   <Link
+                    onClick={handleHideDropdown}
                     href={`/books/genres/${category.name}`}
                     className="flex category-link"
                   >
