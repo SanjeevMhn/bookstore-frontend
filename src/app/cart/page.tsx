@@ -3,15 +3,15 @@ import Link from "next/link";
 export default async function Page() {
   return (
     <div className="cart-container my-auto py-[5rem]">
-      <div className="wrapper flex justify-between items-center">
-        <div className="info-text">
-          <h2 className="text-[4.2rem]">Your Cart is Empty!</h2>
-          <p className="text-[1.8rem]">
+      <div className="wrapper flex flex-col-reverse gap-[2rem] justify-between items-center">
+        <div className="info-text text-center">
+          <h2 className="text-[3.2rem]">Your Cart is Empty!</h2>
+          <p className="text-[1.8rem] pb-[1.5rem]">
             Explore our collection of books from various genres and add them
             here before making your purchase.
           </p>
-          <p className="text-[1.8rem]">Some Helpful links:</p>
-          <ul className="link-list pt-[1rem]">
+          <p className="text-[2.5rem]">Some Helpful links:</p>
+          <ul className="link-list inline-flex flex-col text-left pt-[1rem]">
             <li>
               <Link href={"/"} className="text-blue-500">
                 Home
