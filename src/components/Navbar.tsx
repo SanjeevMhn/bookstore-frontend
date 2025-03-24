@@ -1,7 +1,8 @@
 'use client'
 import Link from "next/link";
 import Categories from "./Categories";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { OpenModalContext, useOpenModal } from "@/providers/OpenModalContext";
 
 const CategoryDropdown = () => {
   const [hideDropdown, setHideDropdown] = useState<boolean>(false)
@@ -19,6 +20,8 @@ const CategoryDropdown = () => {
 };
 
 const Navbar = () => {
+
+  const {openModal, setOpenModal, handleOpenModal} = useOpenModal()
   return (
     <nav className="main-nav">
       <div className="wrapper flex items-center gap-[10rem] category-dropdown">
@@ -66,9 +69,9 @@ const Navbar = () => {
             </svg>
             <span className="cart-items">0</span>
           </Link>
-          <a href="/" className="label label-text">
+          <button className="label label-text" onClick={() => handleOpenModal('Login')}>
             Login
-          </a>
+          </button>
         </div>
         <CategoryDropdown />
       </div>
