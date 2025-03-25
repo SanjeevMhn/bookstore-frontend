@@ -1,14 +1,18 @@
+'use client'
 import { ModalType } from "@/providers/OpenModalContext";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, SetStateAction } from "react";
+
 type LoginFormPropType = {
+  setModalTitle: React.Dispatch<SetStateAction<string | null>>
   handleOpenModal: (modal: ModalType) => void;
 };
 
-const LoginForm: FC<LoginFormPropType> = ({ handleOpenModal }) => {
+const LoginForm: FC<LoginFormPropType> = ({ setModalTitle, handleOpenModal }) => {
+  setModalTitle('Login');
   return (
     <>
-      <h2 className="form-header">Login</h2>
+      {/* <h2 className="form-header">Login</h2> */}
       <div className="form-options">
         <button className="google-login">Continue with Google</button>
         <button className="facebook-login">Continue with Facebook</button>

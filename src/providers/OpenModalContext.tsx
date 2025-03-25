@@ -1,6 +1,7 @@
 "use client";
 import LoginForm from "@/components/LoginForm";
 import RegisterForm from "@/components/RegisterForm";
+import SearchForm from "@/components/SearchForm";
 import Link from "next/link";
 import { createContext, useContext, useRef, useState } from "react";
 
@@ -30,6 +31,7 @@ export const OpenMondalProvider = ({
   children: React.ReactNode;
 }) => {
   const [openModal, setOpenModal] = useState<ModalType>(null);
+  const [modalTitle, setModalTitle] = useState<string | null>(null);
 
   const dialog = useRef<HTMLDialogElement>(null);
   const handleOpenModal = (modal: ModalType) => {
@@ -51,22 +53,36 @@ export const OpenMondalProvider = ({
       {children}
 
       <dialog ref={dialog} onClose={() => handleOpenModal(null)}>
-        <button
-          type="button"
-          className="cursor-pointer inline-flex ml-auto"
-          onClick={() => handleOpenModal(null)}
-        >
-          <span className="icon-container" style={{ "--size": "2rem" }}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-              <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
-            </svg>
-          </span>
-        </button>
+        <div className="modal-header flex items-center justify-between pb-[1.2rem]">
+          <h2 className="title-text text-[2.4rem]">
+            {modalTitle !== null && modalTitle}
+          </h2>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => handleOpenModal(null)}
+          >
+            <span className="icon-container" style={{ "--size": "2rem" }}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+              </svg>
+            </span>
+          </button>
+        </div>
+
         <div className="form-container">
           {openModal == "Login" ? (
-            <LoginForm handleOpenModal={handleOpenModal} />
+            <LoginForm
+              setModalTitle={setModalTitle}
+              handleOpenModal={handleOpenModal}
+            />
           ) : openModal == "Register" ? (
-            <RegisterForm handleOpenModal={handleOpenModal} />
+            <RegisterForm
+              setModalTitle={setModalTitle}
+              handleOpenModal={handleOpenModal}
+            />
+          ) : openModal == "Full Search" ? (
+            <SearchForm setModalTitle={setModalTitle} />
           ) : null}
         </div>
       </dialog>

@@ -436,6 +436,7 @@ dialog {
     padding-bottom: 4rem;
     &::backdrop {
       backdrop-filter: blur(3);
+      overflow-y: auto;
     }
   }
 }
@@ -509,7 +510,7 @@ dialog {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    .form-group {
+    .form-group:not(.default) {
       position: relative;
       input {
         padding: 1.2rem 2rem;
@@ -566,6 +567,24 @@ dialog {
         background-color: #2193b0;
         width: 100%;
         border-radius: 0.5rem;
+      }
+    }
+
+    &.search-form{
+      .form-group{
+        display: flex;
+        align-items: center;
+        input{
+          width: calc(100% - 2.5rem);
+          font-size: 2rem;
+          padding: 1rem 0;
+          padding-left: 2rem;
+          margin-left: auto;
+          &:focus{
+            outline: unset;
+            border-width: 0;
+          }
+        }
       }
     }
   }

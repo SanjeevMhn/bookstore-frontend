@@ -1,16 +1,22 @@
 "use client";
 import { ModalType } from "@/providers/OpenModalContext";
-import { FC, useState } from "react";
+import { FC, SetStateAction, useRef, useState } from "react";
 type RegisterFormPropType = {
+  setModalTitle: React.Dispatch<SetStateAction<string | null>>;
   handleOpenModal: (modal: ModalType) => void;
 };
-const RegisterForm: FC<RegisterFormPropType> = ({ handleOpenModal }) => {
+const RegisterForm: FC<RegisterFormPropType> = ({
+  setModalTitle,
+  handleOpenModal,
+}) => {
   const [signupWithEmail, setSignupWithEmail] = useState<boolean>(false);
+  const input = useRef<HTMLInputElement>(null)
+
   return (
     <>
       {!signupWithEmail ? (
         <>
-          <h2 className="form-header">Create Account</h2>
+          {setModalTitle("Create Account")}
           <div className="form-redirect">
             Already have an account?&nbsp;
             <button
@@ -34,7 +40,8 @@ const RegisterForm: FC<RegisterFormPropType> = ({ handleOpenModal }) => {
         </>
       ) : (
         <>
-          <h2 className="form-header">Register With Email</h2>
+          {setModalTitle("Register With Email")}
+          {input.current?.focus()}
           <form className="register-form form">
             <div className="form-group">
               <input
@@ -43,6 +50,7 @@ const RegisterForm: FC<RegisterFormPropType> = ({ handleOpenModal }) => {
                 id="full-name"
                 className="form-control"
                 placeholder="Full Name"
+                ref={input}
               />
               <label htmlFor="full-name" className="form-label">
                 Full Name
@@ -89,7 +97,13 @@ const RegisterForm: FC<RegisterFormPropType> = ({ handleOpenModal }) => {
               <button type="button">Register</button>
             </div>
             <div className="form-footer">
-                <button type="button" className="text-blue-500 cursor-pointer flex w-full justify-center" onClick={() => setSignupWithEmail(false)}>Register with social accounts</button>
+              <button
+                type="button"
+                className="text-blue-500 cursor-pointer flex w-full justify-center"
+                onClick={() => setSignupWithEmail(false)}
+              >
+                Register with social accounts
+              </button>
             </div>
           </form>
         </>

@@ -21,7 +21,7 @@ const CategoryDropdown = () => {
 
 const Navbar = () => {
 
-  const {openModal, setOpenModal, handleOpenModal} = useOpenModal()
+  const { handleOpenModal} = useOpenModal()
   return (
     <nav className="main-nav">
       <div className="wrapper flex items-center gap-[10rem] category-dropdown">
@@ -41,7 +41,7 @@ const Navbar = () => {
             Deals
           </a>
           <div className="label ml-auto">
-            <div className="search-container flex items-center gap-2 bg-gray-200 p-[0.5rem_1.2rem] rounded-xl cursor-pointer">
+            <div className="search-container flex items-center gap-2 bg-gray-200 p-[0.5rem_1.2rem] rounded-xl cursor-pointer" onClick={() => handleOpenModal('Full Search')}>
               <span className="icon-container" style={{ "--size": "2rem" }}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
