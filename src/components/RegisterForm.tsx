@@ -1,6 +1,6 @@
 "use client";
 import { ModalType } from "@/providers/OpenModalContext";
-import { FC, SetStateAction, useRef, useState } from "react";
+import { FC, SetStateAction, useEffect, useRef, useState } from "react";
 type RegisterFormPropType = {
   setModalTitle: React.Dispatch<SetStateAction<string | null>>;
   handleOpenModal: (modal: ModalType) => void;
@@ -12,11 +12,19 @@ const RegisterForm: FC<RegisterFormPropType> = ({
   const [signupWithEmail, setSignupWithEmail] = useState<boolean>(false);
   const input = useRef<HTMLInputElement>(null)
 
+  useEffect(() => {
+    if (!signupWithEmail) {
+      setModalTitle("Create Account")
+    } else {
+      setModalTitle("Register With Email")
+      input.current?.focus()
+    }
+  }, [signupWithEmail])
+
   return (
     <>
       {!signupWithEmail ? (
         <>
-          {setModalTitle("Create Account")}
           <div className="form-redirect">
             Already have an account?&nbsp;
             <button
@@ -40,8 +48,7 @@ const RegisterForm: FC<RegisterFormPropType> = ({
         </>
       ) : (
         <>
-          {setModalTitle("Register With Email")}
-          {input.current?.focus()}
+
           <form className="register-form form">
             <div className="form-group">
               <input

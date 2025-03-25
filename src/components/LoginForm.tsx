@@ -1,7 +1,7 @@
 'use client'
 import { ModalType } from "@/providers/OpenModalContext";
 import Link from "next/link";
-import { FC, SetStateAction } from "react";
+import { FC, SetStateAction, useEffect } from "react";
 
 type LoginFormPropType = {
   setModalTitle: React.Dispatch<SetStateAction<string | null>>
@@ -9,7 +9,9 @@ type LoginFormPropType = {
 };
 
 const LoginForm: FC<LoginFormPropType> = ({ setModalTitle, handleOpenModal }) => {
-  setModalTitle('Login');
+  useEffect(() => {
+    setModalTitle('Login');
+  }, [])
   return (
     <>
       {/* <h2 className="form-header">Login</h2> */}
