@@ -53,7 +53,7 @@ export const OpenMondalProvider = ({
       {children}
 
       <dialog ref={dialog} onClose={() => handleOpenModal(null)}>
-        <div className="modal-header flex items-center justify-between pb-[1.2rem]">
+        <div className="modal-header flex items-center justify-between pb-[1.5rem]">
           <h2 className="title-text text-[2.4rem]">
             {modalTitle !== null && modalTitle}
           </h2>
