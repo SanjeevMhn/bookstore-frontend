@@ -1,7 +1,10 @@
 "use client";
+import LoginForm from "@/components/LoginForm";
+import RegisterForm from "@/components/RegisterForm";
+import Link from "next/link";
 import { createContext, useContext, useRef, useState } from "react";
 
-type ModalType = "Login" | "Register" | "Full Search" | null;
+export type ModalType = "Login" | "Register" | "Full Search" | null;
 
 type OpenModalContextType = {
   openModal: ModalType;
@@ -48,49 +51,22 @@ export const OpenMondalProvider = ({
       {children}
 
       <dialog ref={dialog} onClose={() => handleOpenModal(null)}>
+        <button
+          type="button"
+          className="cursor-pointer inline-flex ml-auto"
+          onClick={() => handleOpenModal(null)}
+        >
+          <span className="icon-container" style={{ "--size": "2rem" }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+            </svg>
+          </span>
+        </button>
         <div className="form-container">
           {openModal == "Login" ? (
-            <>
-              <h2 className="form-header">Login</h2>
-              <div className="third-party-login">
-                <button className="google-login">Continue with Google</button>
-                <button className="facebook-login">
-                  Continue with Facebook
-                </button>
-              </div>
-              <div className="stepper"></div>
-              <form className="login-form form">
-                <div className="form-group">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    className="form-control"
-                    placeholder="Email Address"
-                  />
-                  <label htmlFor="email" className="form-label">
-                    Email Address
-                  </label>
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    className="form-control"
-                    placeholder="Password"
-                  />
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                </div>
-
-                <div className="form-actions">
-                    <button type="button">Login</button>
-                </div>
-        
-              </form>
-            </>
+            <LoginForm handleOpenModal={handleOpenModal} />
+          ) : openModal == "Register" ? (
+            <RegisterForm handleOpenModal={handleOpenModal} />
           ) : null}
         </div>
       </dialog>

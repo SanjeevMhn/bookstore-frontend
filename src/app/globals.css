@@ -426,14 +426,14 @@ dialog {
   place-self: center;
   padding: 2rem;
   border-radius: 1.5rem;
-  width: min(90%, 60rem);
-  /* height: min(90%, 60rem); */
   border: 0.4rem solid #a1a1a1;
+  animation: close 200ms ease-in-out 0s 1 forwards;
   transition: display 200ms allow-discrete, overlay 200ms allow-discrete;
-  animation: close 200ms ease-in 0s 1 forwards;
   &[open] {
     display: grid;
-    animation: scale 200ms ease-in 0s 1 forwards;
+    animation: scale 200ms ease-in-out 0s 1 forwards;
+    width: min(90%, 60rem);
+    padding-bottom: 4rem;
     &::backdrop {
       backdrop-filter: blur(3);
     }
@@ -450,10 +450,10 @@ dialog {
 }
 
 @keyframes close {
-  from {
+  from{
     transform: scale(1);
   }
-  to {
+  to{
     transform: scale(0);
   }
 }
@@ -465,18 +465,19 @@ dialog {
   width: 100%;
   /* height: 100%; */
   .form-header {
-    font-size: 2rem;
+    font-size: 2.8rem;
     text-align: center;
   }
-  .third-party-login {
+  .form-options{
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 1.5rem;
     button {
       padding: 0.5rem 1.2rem;
       font-size: 1.8rem;
       border: 0.1px solid #212121;
       border-radius: 0.5rem;
+      cursor: pointer;
     }
   }
   .stepper {
@@ -538,6 +539,19 @@ dialog {
         left: 2rem;
         font-size: 1.6rem;
         transition: all 200ms ease-in-out;
+      }
+    }
+    .form-info{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .form-group{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        label{
+          white-space: nowrap;
+        }
       }
     }
     .form-actions{
