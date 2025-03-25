@@ -1,16 +1,21 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
 import { OpenMondalProvider } from "./OpenModalContext";
-import Footer from "@/components/Footer";
 import MainLayout from "@/components/MainLayout";
+import { ProgressProvider } from "@bprogress/next/app";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <OpenMondalProvider>
-        <MainLayout>
-            {children}
-        </MainLayout>
+      <MainLayout>
+        <ProgressProvider
+          height="4px"
+          color="#155dfc"
+          options={{ showSpinner: false }}
+        >
+          {children}
+        </ProgressProvider>
+      </MainLayout>
     </OpenMondalProvider>
   );
 }
