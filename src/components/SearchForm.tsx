@@ -1,17 +1,19 @@
 "use client";
-import { FC, SetStateAction, useRef } from "react";
+import { FC, SetStateAction, useEffect, useRef } from "react";
 
 type SearchFormPropType = {
   setModalTitle: React.Dispatch<SetStateAction<string | null>>;
 };
 
 const SearchForm: FC<SearchFormPropType> = ({ setModalTitle }) => {
-  setModalTitle("Search");
   const input = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    input.current?.focus();
+    setModalTitle("Search");
+  }, []);
   return (
     <>
-      {input.current?.focus()}
       <form className="search-form form">
         <div className="form-group default">
           <span className="icon-container" style={{ "--size": "2.5rem" }}>
@@ -30,6 +32,7 @@ const SearchForm: FC<SearchFormPropType> = ({ setModalTitle }) => {
             className="form-control"
             placeholder="Search By Title, Author, Keyword or ISBN"
             ref={input}
+            tabIndex={0}
           />
         </div>
       </form>
