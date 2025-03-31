@@ -246,20 +246,23 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
           </div>
           <BookDescription description={bookDetail.book_description} />
           {bookDetail.book_onSale !== undefined ? (
-            <p className="book-price flex item-center gap-4">
+            <div className="book-price-group flex item-center gap-4">
               <s className="text-[2rem] text-gray-500 flex items-end">
                 Rs.{bookDetail.book_price}
               </s>
               <p className="book-price text-[2.2rem]">
                 Rs.{bookDetail.book_onSale.sale_price}
               </p>
-            </p>
+            </div>
           ) : (
             <p className="book-price text-[2.2rem]">
               Rs.{bookDetail.book_price}
             </p>
           )}
-          <BookQuantityDisplay />
+          {bookDetail.book_inStock !== undefined &&
+          !bookDetail.book_inStock ? null : (
+            <BookQuantityDisplay />
+          )}
           <div className="book-actions flex gap-[1.5rem]">
             {bookDetail.book_inStock !== undefined &&
             !bookDetail.book_inStock ? (
