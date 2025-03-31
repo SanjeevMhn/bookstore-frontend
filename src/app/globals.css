@@ -264,22 +264,32 @@ body {
       background-color: #fff;
       box-shadow: 0 0 8px 0px #a9b7c9;
     }
-    &:has(.inner-container .out-of-stock) {
+    &:has(.inner-container .out-of-stock, .inner-container .discount) {
       overflow: hidden;
     }
     .inner-container {
       position: relative;
-      .out-of-stock {
+      .out-of-stock,
+      .discount {
         position: absolute;
         width: 100%;
-        background-color: rgb(111, 13, 13);
         color: #fff;
-        font-size: 1.3rem;
         text-align: center;
         padding: 0.5rem 1rem;
         top: 0;
         left: 0;
-        transform: rotate(-45deg) translate(-4.2rem, -3rem);
+        transform: rotate(-45deg) translate(-4rem, -2.5rem);
+      }
+
+      .out-of-stock {
+        background-color: rgb(111, 13, 13);
+        font-size: 1.3rem;
+      }
+
+      .discount {
+        background-color: #6daded;
+        font-size: 1.6rem;
+        text-transform: uppercase;
       }
     }
   }
@@ -337,19 +347,27 @@ body {
   border: 1px solid #a3a3a3;
   border-radius: 0.8rem;
   position: relative;
-  .out-of-stock {
+  .out-of-stock,
+  .discount {
     position: absolute;
     width: 20%;
-    background-color: rgb(111, 13, 13);
     color: #fff;
     font-size: 1.5rem;
     text-align: center;
     padding: 0.5rem 1rem;
     top: 0;
     left: 0;
-    transform: rotate(-45deg) translate(-7.5rem, -3rem);
+    transform: rotate(-45deg) translate(-7rem, -2.5rem);
   }
-  &:has(.out-of-stock) {
+  .out-of-stock {
+    background-color: rgb(111, 13, 13);
+  }
+  .discount {
+    background-color: #6daded;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+  &:has(.out-of-stock, .discount) {
     overflow: hidden;
   }
   .book-detail {
@@ -451,10 +469,10 @@ dialog {
 }
 
 @keyframes close {
-  from{
+  from {
     transform: scale(1);
   }
-  to{
+  to {
     transform: scale(0);
   }
 }
@@ -469,7 +487,7 @@ dialog {
     font-size: 2.8rem;
     text-align: center;
   }
-  .form-options{
+  .form-options {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -521,7 +539,8 @@ dialog {
         &::placeholder {
           color: transparent;
         }
-        &:focus,&:not(:placeholder-shown) {
+        &:focus,
+        &:not(:placeholder-shown) {
           & + .form-label {
             top: -0.95rem;
             left: 1rem;
@@ -541,22 +560,22 @@ dialog {
         transition: all 200ms ease-in-out;
       }
     }
-    .form-info{
+    .form-info {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      .form-group{
+      .form-group {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        label{
+        label {
           white-space: nowrap;
         }
       }
     }
-    .form-actions{
+    .form-actions {
       display: flex;
-      button{
+      button {
         cursor: pointer;
         padding: 1rem 2rem;
         color: #fff;
@@ -569,17 +588,17 @@ dialog {
       }
     }
 
-    &.search-form{
-      .form-group{
+    &.search-form {
+      .form-group {
         display: flex;
         align-items: center;
-        input{
+        input {
           width: calc(100% - 2.5rem);
           font-size: 2rem;
           padding: 1rem 0;
           padding-left: 2rem;
           margin-left: auto;
-          &:focus{
+          &:focus {
             outline: unset;
             border-width: 0;
           }

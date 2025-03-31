@@ -16,6 +16,10 @@ export type BookDetailType = {
   book_isbn: string;
   book_language: string;
   book_inStock?: boolean;
+  book_onSale?: {
+    sale_percentage: string;
+    sale_price: string;
+  };
 };
 
 type BookDetailPropType = {
@@ -23,14 +27,14 @@ type BookDetailPropType = {
 };
 
 const BookQuantityDisplay = () => {
-  const [bookQuantity, setBookQuantity] = useState<number>(0);
+  const [bookQuantity, setBookQuantity] = useState<number>(1);
   return (
     <div className="book-quantity inline-flex items-center gap-[1.5rem]">
       <button
         type="button"
         onClick={() =>
-          bookQuantity <= 0
-            ? setBookQuantity(0)
+          bookQuantity <= 1
+            ? setBookQuantity(1)
             : setBookQuantity(bookQuantity - 1)
         }
       >
@@ -52,15 +56,23 @@ const BookQuantityDisplay = () => {
   );
 };
 
-const BookDescription = ({description}:{description: string}) => {
-  const [showMore, setShowMore] = useState<boolean>(false)
+const BookDescription = ({ description }: { description: string }) => {
+  const [showMore, setShowMore] = useState<boolean>(false);
   return (
     <>
-      <p className={`book-description ${showMore && "show-more"}`}>{description}</p>
-      <button type="button" className="mx-auto text-blue-400 text-[1.8rem] cursor-pointer" onClick={() => setShowMore(!showMore)}>Show {!showMore ? "More" : "Less"}</button>
+      <p className={`book-description ${showMore && "show-more"}`}>
+        {description}
+      </p>
+      <button
+        type="button"
+        className="mx-auto text-blue-400 text-[1.8rem] cursor-pointer"
+        onClick={() => setShowMore(!showMore)}
+      >
+        Show {!showMore ? "More" : "Less"}
+      </button>
     </>
-  )
-}
+  );
+};
 
 const BookDetail = ({ bookDetail }: BookDetailPropType) => {
   let placeholder = "/placeholder.svg";
@@ -190,6 +202,11 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
         {bookDetail.book_inStock !== undefined && !bookDetail.book_inStock ? (
           <span className="out-of-stock">Out of stock</span>
         ) : null}
+        {bookDetail.book_onSale !== undefined ? (
+          <span className="discount">
+            {bookDetail.book_onSale.sale_percentage}%&nbsp;off
+          </span>
+        ) : null}
         <div className="book-cover flex flex-col gap-[1.5rem]">
           <div className="img-container" style={{ "--size": "22rem" }}>
             {bookDetail.book_image !== "" &&
@@ -228,7 +245,20 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
             </Link>
           </div>
           <BookDescription description={bookDetail.book_description} />
-          <p className="book-price text-[2.2rem]">Rs. 980</p>
+          {bookDetail.book_onSale !== undefined ? (
+            <p className="book-price flex item-center gap-4">
+              <s className="text-[2rem] text-gray-500 flex items-end">
+                Rs.{bookDetail.book_price}
+              </s>
+              <p className="book-price text-[2.2rem]">
+                Rs.{bookDetail.book_onSale.sale_price}
+              </p>
+            </p>
+          ) : (
+            <p className="book-price text-[2.2rem]">
+              Rs.{bookDetail.book_price}
+            </p>
+          )}
           <BookQuantityDisplay />
           <div className="book-actions flex gap-[1.5rem]">
             {bookDetail.book_inStock !== undefined &&

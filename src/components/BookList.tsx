@@ -8,6 +8,10 @@ export type BookCardType = {
   image: string;
   price: string;
   inStock?: boolean;
+  onSale?:{
+    sale_percentage: string;
+    sale_price: string;
+  }
 };
 
 type BookListProps = {

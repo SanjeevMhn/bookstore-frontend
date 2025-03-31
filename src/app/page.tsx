@@ -23,6 +23,10 @@ export default function Home() {
       author: "Cixin Leu",
       image: "",
       price: "958",
+      onSale: {
+        sale_percentage: '25',
+        sale_price: '718'
+      }
     },
     {
       id: 4,
@@ -30,6 +34,10 @@ export default function Home() {
       author: "George Otwell",
       image: "",
       price: "1200",
+      onSale: {
+        sale_percentage: '25',
+        sale_price: '718'
+      }
     },
     {
       id: 5,
