@@ -62,10 +62,10 @@ export default async function Page({
     book_isbn: "152878910925",
     book_language: "English",
     book_inStock: true,
-    book_onSale: {
-      sale_percentage: '25',
-      sale_price: '758'
-    }
+    // book_onSale: {
+    //   sale_percentage: '25',
+    //   sale_price: '758'
+    // }
   };
 
   return (
