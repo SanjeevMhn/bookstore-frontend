@@ -1,11 +1,13 @@
+import nextConfig from "../../next.config";
 import { BookCardType } from "./BookList";
 
 type BookCardPropType = {
   book: BookCardType;
 };
 
+
 const BookCard = ({ book }: BookCardPropType) => {
-  const placeholderImg = "/placeholder.svg";
+  const placeholderImg = `${nextConfig.basePath}/placeholder.svg`;
   return (
     <div className="inner-container h-full flex flex-col gap-[0.8rem] bg-white">
       {book.inStock !== undefined && !book.inStock ? (

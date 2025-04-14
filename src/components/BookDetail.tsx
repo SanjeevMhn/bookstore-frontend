@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { BookCardType } from "./BookList";
 import BookCardList from "./BookCardList";
+import nextConfig from "../../next.config";
 export type BookDetailType = {
   book_title: string;
   book_image: string;
@@ -75,7 +76,7 @@ const BookDescription = ({ description }: { description: string }) => {
 };
 
 const BookDetail = ({ bookDetail }: BookDetailPropType) => {
-  let placeholder = "/placeholder.svg";
+  let placeholder = `${nextConfig.basePath}/placeholder.svg`;
 
   const setBookOtherInfo = (
     bookDetail: BookDetailType
