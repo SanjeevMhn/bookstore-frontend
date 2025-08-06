@@ -76,7 +76,7 @@ const BookDescription = ({ description }: { description: string }) => {
 };
 
 const BookDetail = ({ bookDetail }: BookDetailPropType) => {
-  let placeholder = `${nextConfig.basePath}/placeholder.svg`;
+  let placeholder = `/placeholder.svg`;
 
   const setBookOtherInfo = (
     bookDetail: BookDetailType
