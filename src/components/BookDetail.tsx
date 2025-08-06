@@ -39,7 +39,7 @@ const BookQuantityDisplay = () => {
             : setBookQuantity(bookQuantity - 1)
         }
       >
-        <span className="icon-container" style={{ "--size": "2.5rem" }}>
+        <span className="icon-container" style={{ "--size": "2.5rem" } as React.CSSProperties}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
           </svg>
@@ -47,7 +47,7 @@ const BookQuantityDisplay = () => {
       </button>
       <span className="quantity text-[2.2rem]">Qty: {bookQuantity}</span>
       <button type="button" onClick={() => setBookQuantity(bookQuantity + 1)}>
-        <span className="icon-container" style={{ "--size": "2.5rem" }}>
+        <span className="icon-container" style={{ "--size": "2.5rem" } as React.CSSProperties}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z" />
           </svg>
@@ -199,7 +199,7 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
 
   return (
     <section className="book-details flex flex-col gap-[2.5rem]">
-      <article className="book-detail-container wrapper">
+      <article className="book-detail-container wrapper flex flex-col lg:flex-row">
         {bookDetail.book_inStock !== undefined && !bookDetail.book_inStock ? (
           <span className="out-of-stock">Out of stock</span>
         ) : null}
@@ -208,8 +208,8 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
             {bookDetail.book_onSale.sale_percentage}%&nbsp;off
           </span>
         ) : null}
-        <div className="book-cover flex flex-col gap-[1.5rem]">
-          <div className="img-container" style={{ "--size": "22rem" }}>
+        <div className="book-cover flex flex-col items-center lg:items-start gap-[1.5rem]">
+          <div className="img-container" style={{ "--size": "22rem" } as React.CSSProperties}>
             {bookDetail.book_image !== "" &&
             bookDetail.book_image !== undefined ? (
               <img src={bookDetail.book_image} alt="Book Cover Image" />
@@ -300,7 +300,7 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
               <li className="info-item flex gap-5 items-center" key={index}>
                 <span
                   className="icon-container"
-                  style={{ "--size": "2.2rem" }}
+                  style={{ "--size": "2.2rem" } as React.CSSProperties}
                   dangerouslySetInnerHTML={{ __html: info.icon }}
                 ></span>
                 <span className="label-text text-[1.7rem]">{info.data}</span>
@@ -313,7 +313,7 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
       <article className="books-from-author bg-blue-100 py-[3rem]">
         <div className="wrapper">
           <header className="title-section pb-5 grid grid-cols-4 gap-2">
-            <h2 className="header-text col-1 row-1">More by</h2>
+            <h2 className="header-text col-1 row-1 whitespace-nowrap">More by</h2>
             <p className="secondary-text col-1 row-2">Cixin Leu</p>
             <Link
               href={"/books/genres/science-fiction"}
@@ -330,8 +330,8 @@ const BookDetail = ({ bookDetail }: BookDetailPropType) => {
       <article className="similar-books pb-[3rem]">
         <div className="wrapper">
           <header className="title-section pb-5 grid grid-cols-4 gap-2">
-            <h2 className="header-text col-1 row-1">See Similar Books</h2>
-            <p className="secondary-text pb-5 col-1 row-2">Science Fiction</p>
+            <h2 className="header-text col-1 row-1 whitespace-nowrap">See Similar Books</h2>
+            <p className="secondary-text pb-5 col-1 row-2 whitespace-nowrap">Science Fiction</p>
             <Link
               href={"/books/genres/science-fiction"}
               className="col-[1/-1] row-[1/span_2] flex justify-end items-center text-[1.8rem]"

@@ -26,12 +26,12 @@ const BookList = ({ title, sub_title, bookList, link, inverse }: BookListProps) 
   return (
     <section className={`book-list-section ${inverse !== undefined && inverse ? 'bg-blue-100' : ''}`}>
       <div className="wrapper p-[5rem_0]">
-        <header className="flex justify-between items-center pb-[2rem]">
+        <header className="flex justify-between items-center pb-[2rem] flex-wrap gap-[2rem]">
           <div className="title-section">
             <h2 className="header-text">{title}</h2>
             {sub_title && <p className="secondary-text">{sub_title}</p>}
           </div>
-          <a href={link} className="header-link">
+          <a href={link} className="header-link underline">
             Show All
           </a>
         </header>

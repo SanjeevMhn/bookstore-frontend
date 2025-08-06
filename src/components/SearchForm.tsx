@@ -12,11 +12,12 @@ const SearchForm: FC<SearchFormPropType> = ({ setModalTitle }) => {
     input.current?.focus();
     setModalTitle("Search");
   }, []);
+
   return (
     <>
       <form className="search-form form">
         <div className="form-group default">
-          <span className="icon-container" style={{ "--size": "2.5rem" }}>
+          <span className="icon-container" style={{ "--size": "2.5rem" } as React.CSSProperties}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 512 512"

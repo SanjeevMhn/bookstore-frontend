@@ -253,8 +253,8 @@ body {
 .book-list {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fill, min(100%, calc(14.5rem + 2.4rem)));
-
+  grid-template-columns: repeat(auto-fill, calc(14.5rem + 2.4rem));
+  place-content: center;
   .item {
     cursor: pointer;
     padding: 1.2rem;
@@ -276,8 +276,6 @@ body {
         color: #fff;
         text-align: center;
         padding: 0.5rem 1rem;
-        top: 0;
-        left: 0;
         transform: rotate(-45deg) translate(-4rem, -2.5rem);
       }
 
@@ -298,10 +296,6 @@ body {
 .genre-section {
   display: flex;
   gap: 2rem;
-  .header-section {
-  }
-  .side-section {
-  }
   .genres-books-list {
     flex-grow: 1;
     display: flex;
@@ -323,15 +317,17 @@ body {
 
 .breadcrumbs {
   display: flex;
-  gap: 2.5rem;
-  font-size: 1.8rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+  font-size: clamp(1.4rem, 1.6rem, 1.8rem);
   .breadcrumb-item {
-    &:not(:first-child) {
+    white-space: nowrap;
+    &:not(:last-child) {
       position: relative;
-      &::before {
+      &::after {
         content: "/";
         position: absolute;
-        left: -1.45rem;
+        right: -1.45rem;
         font-size: 3rem;
         top: 50%;
         transform: translateY(-50%);

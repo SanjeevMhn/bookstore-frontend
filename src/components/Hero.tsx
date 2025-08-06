@@ -36,21 +36,31 @@ const Hero = () => {
     <section className="hero-section bg-blue-100">
       <div className="wrapper p-[5rem_0]">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={20}
+          slidesPerView={1}
+          spaceBetween={100}
           autoplay={{
             delay: 2500,
             disableOnInteraction: true,
           }}
+          centeredSlides={true}
+          centeredSlidesBounds={true}
           loop={true}
           modules={[Autoplay]}
+          breakpoints={{
+            720:{
+              slidesPerView: 2,
+            },
+            1124: {
+              slidesPerView: 3,
+            },
+          }}
         >
           {silderCards.map((card) => (
-            <SwiperSlide className="cards-container">
+            <SwiperSlide className="cards-container w-full flex! items-center">
               <a
                 key={card.id}
                 href={card.link}
-                className={`card-content card-${card.id}`}
+                className={`card-content card-${card.id} w-full flex! justify-center`}
               >
                 {card.content}
               </a>

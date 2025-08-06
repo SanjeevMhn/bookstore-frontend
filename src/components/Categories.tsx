@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Link from "next/link";
 
 export type Category = {
@@ -217,8 +217,8 @@ const Categories = ({ activeCategory, handleHideDropdown }: CategoriesProp) => {
     return false;
   };
   return (
-    <section className="category-list-container h-full">
-      <ul className="category-list flex flex-col gap-[1rem] h-full overflow-y-auto bg-slate-200">
+    <section className="category-list-container h-full w-full">
+      <ul className="category-list flex flex-col gap-[1rem] h-full w-full lg:w-auto overflow-y-auto bg-slate-200">
         {categories.map((category, index) => {
           if (category.hasOwnProperty("sub_category")) {
             return (

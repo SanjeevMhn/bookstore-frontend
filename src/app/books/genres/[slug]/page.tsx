@@ -87,24 +87,24 @@ export default async function Page({
   ];
   return (
     <div className="wrapper p-[3rem_0]">
-      <div className="genre-section">
+      <div className="genre-section flex-col lg:flex-row">
         <aside className="side-section">
           <Categories activeCategory={route} />
         </aside>
         <main className="genres-books-list">
-          <header className="header-section flex items-center justify-between">
+          <header className="header-section flex flex-col lg:flex-row items-center justify-between flex-wrap">
             <h2 className="genre-name text-[2rem] font-semibold capitalize">
               {slug}
             </h2>
-            <form className="search-genre">
+            <form className="search-genre grow lg:grow-0">
               <input
                 type="text"
                 name=""
                 id=""
-                className="form-control border border-gray-400 rounded-md p-[0.5rem_3.5rem_0.5rem_1rem] text-[1.8rem]"
+                className="form-control border border-gray-400 rounded-md p-[0.5rem_3.5rem_0.5rem_1rem] text-[1.8rem] w-full"
                 placeholder={`Search on ${slug}`}
               />
-              <span className="icon-container" style={{ "--size": "2rem" }}>
+              <span className="icon-container" style={{ "--size": "2rem" } as React.CSSProperties}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 512 512"
